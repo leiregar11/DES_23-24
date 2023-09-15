@@ -1,3 +1,4 @@
+<pre>
 <?php
 //en la teoria  a partir de la pg 52 de introduccion a php
 
@@ -16,15 +17,19 @@ $d = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"
 print_r($b);
  echo "<br><br>";
 
-var_dump($c);
+var_dump($c); //muestra de que tipo es el contenido del array
 echo "<br><br>";
 
 
+
+//ejemplo pag 59
 $a[0] = 0;
 $a[1] = "uno";
 $a["tres"] = 3;
 $a[] = "dos";
 
-print_r($a);
+var_dump($a);
 
 ?>
+
+</pre>
