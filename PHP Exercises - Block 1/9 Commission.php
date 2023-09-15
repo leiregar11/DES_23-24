@@ -1,5 +1,5 @@
 <?php
-$sales=9000;
+$sales=123456;
 $commission;
 
 if($sales<10000){
@@ -8,16 +8,16 @@ if($sales<10000){
 
 switch($sales){
     case $sales<10000:
-        $commission=$sales*0.05;
+        $commission=$sales*1.05;
         break;
-    case $sales>=10000 && $sales<20000:
-        $commission=$sales*0.08;
+    case $sales<20000:
+        $commission=$sales*1.08;
         break;
-    case $sales>=20000 && $sales<40000:
-        $commission=$sales*0.10;
+    case $sales<40000:
+        $commission=$sales*1.10;
         break;
     case $sales>=40000:
-        $commission=$sales*0.13;
+        $commission=$sales*1.13;
         break;
     
 }
