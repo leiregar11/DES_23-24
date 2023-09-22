@@ -1,17 +1,27 @@
 <?php
 
 $lista = array("pepe","federico","juan","ana");
-// $filtro = array_filter($lista,
-// function($n) { return (strlen($n) == 4); });
+$filtro = array_filter($lista,
+function($n) { return (strlen($n) == 4); });
 $filtro=[];
-function filter($lista){
-    foreach($lista as $nombre){
-        if(strlen($nombre)==4){
-            $filtro[]=$nombre;
+// function filter($lista){
+//     foreach($lista as $nombre){
+//         if(strlen($nombre)==4){
+//             $filtro[]=$nombre;
+//         }
+//     }
+//     return $filtro;
+// }
+
+function array_filter($lista ,$function){
+    $result=array();
+    foreach($lista as $value){
+        if($function($value)){
+            $result[]=$value;
         }
     }
-    return $filtro;
+    return $result;
 }
-$filtro=filter($lista);
+
 print_r( $filtro);
 ?>
