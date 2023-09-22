@@ -5,7 +5,7 @@ class Person{
     public $firstName;
     public $lastName;
 
-    public function __construct(string $dni,string $firstName, string $lastName) {
+    public function __construct( $dni, $firstName, $lastName) {
         $this->dni = $dni;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -26,7 +26,7 @@ class User extends Person{
         $this->points = $points;
     }
     public function getFullName() {
-        return "User: " . parent::getFullName();
+        return "User: $this->firstname . ' ' . $this->lastname";
     }
 
 }
