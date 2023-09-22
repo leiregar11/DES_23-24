@@ -12,7 +12,7 @@ function checkfile($filePath){
 try {
 checkfile($filePath);
 }
- catch (Exception $e) {
+catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
 
