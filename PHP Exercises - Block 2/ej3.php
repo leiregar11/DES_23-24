@@ -6,8 +6,7 @@ $sum=0;
 for($i=0;$i<20;$i++){
     $num=random_int($max,$min);
     $randomN[]=$num;
-   
-        $sum+=$num;
+    $sum+=$num;
 }
 sort($randomN);
 for($s=0;$s<count($randomN);$s++){

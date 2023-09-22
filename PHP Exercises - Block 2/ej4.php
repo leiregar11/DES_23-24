@@ -4,7 +4,7 @@
     $palabras = explode(" ", $str);
     foreach ($palabras as $palabra) {
         $longitud = strlen($palabra);
-       $associativeArray[$palabra]=$longitud;
+        $associativeArray[$palabra]=$longitud;
     }
     print_r($associativeArray);
 ?>

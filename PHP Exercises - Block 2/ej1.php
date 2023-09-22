@@ -13,6 +13,7 @@ for($i=0;$i<10;$i++){
     $factorials[]=$factorial;
 }
 
+
 print_r($naturalNumbres);
 print_r($factorials);
 
