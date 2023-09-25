@@ -2,11 +2,9 @@
 $filePath = 'resources/config.php';
 
 function checkfile($filePath){
-    if (file_exists($filePath)) {
-    echo "The file exists.";
-    }else{
-        throw new Exception ('The file do not exists.');
-    }
+    if (!file_exists($filePath)) {
+    throw new Exception ('The file do not exists.');
+    } echo "The file exists.";
 }
 
 try {

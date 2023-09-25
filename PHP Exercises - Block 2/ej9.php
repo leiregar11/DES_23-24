@@ -4,6 +4,7 @@ for ($i=0; $i < 5; $i++) {
     $side[]=random_int(-10,10);
 }
 
+
 function areaOfSquare($s){
     if($s>0){
         return "Area of a esquare with sides $s ".($s*$s)."<br>";

@@ -1,9 +1,8 @@
 <?php
-$cumpleaños=array("enero"=>array( "Ainara", "Xabi") , "febrero"=>array("febrero","Irati", "Ibai"), "marzo"=>array("marzo","Juan","María ","Alejandro"), "abril"=>array(    "Ana",
-"abril","Carlos", "María"), "mayo"=>array(    "Marta" ,"Sergio" ,"Isabel" ) , "junio"=>array(    "Andrés" ,"Natalia" ,"Gabriel" ,"Susana" ,"Javier" ) , "julio"=>array(    "Carmen" ,"Rodrigo" ) , "agosto"=>array() , "septiembre"=>array() , "octubre"=>array() , "noviembre"=>array() , "diciembre"=>array());
-function agregarCumple($cumpleaños, $mes, $nombre) {
+$cumpleaños=array("enero"=>array( "Ainara", "Xabi") , "febrero"=>array("Pedro","Irati", "Ibai"), "marzo"=>array("Ander","Juan","María ","Alejandro"), "abril"=>array(    "Ana",
+"Iker","Carlos", "María"), "mayo"=>array(    "Marta" ,"Sergio" ,"Isabel" ) , "junio"=>array(    "Andrés" ,"Natalia" ,"Gabriel" ,"Susana" ,"Javier" ) , "julio"=>array(    "Carmen" ,"Rodrigo" ) , "agosto"=>array() , "septiembre"=>array() , "octubre"=>array() , "noviembre"=>array() , "diciembre"=>array());
+function agregarCumple(&$cumpleaños, $mes, $nombre) {
     $cumpleaños[$mes][] = $nombre;
-    return $cumpleaños;
 }
 function contPersonas($cumpleaños){
     $contNombres=0;
@@ -15,8 +14,8 @@ function contPersonas($cumpleaños){
 }
 
 $nombre="Leire";
-$mes="Diciembre";
-$cumpleaños=agregarCumple($cumpleaños, strtolower($mes), $nombre);
+$mes="enero";
+agregarCumple($cumpleaños, strtolower($mes), $nombre);
 contPersonas($cumpleaños);
 
         foreach ($cumpleaños as $mes => $nombre) {
