@@ -1,45 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
 <?php
+class Birthday {
+    private $birthdays = array(
+        "january" => array("Ainara", "Xabi"),
+        "february" => array("Pedro", "Irati", "Ibai"),
+        "march" => array("Ander", "Juan", "María", "Alejandro"),
+        "april" => array("Ana", "Iker", "Carlos", "María"),
+        "may" => array("Marta", "Sergio", "Isabel"),
+        "june" => array("Andrés", "Natalia", "Gabriel", "Susana", "Javier"),
+        "july" => array("Carmen", "Rodrigo"),
+        "august" => array(),
+        "september" => array(),
+        "october" => array(),
+        "november" => array(),
+        "december" => array()
+    );
 
-
-class Cumple{
-  private  $cumpleaños=array("enero"=>array( "Ainara", "Xabi") , "febrero"=>array("Pedro","Irati", "Ibai"), "marzo"=>array("Ander","Juan","María ","Alejandro"), "abril"=>array(    "Ana",
-"Iker","Carlos", "María"), "mayo"=>array(    "Marta" ,"Sergio" ,"Isabel" ) , "junio"=>array(    "Andrés" ,"Natalia" ,"Gabriel" ,"Susana" ,"Javier" ) , "julio"=>array(    "Carmen" ,"Rodrigo" ) , "agosto"=>array() , "septiembre"=>array() , "octubre"=>array() , "noviembre"=>array() , "diciembre"=>array());
-
-private $mes;
-private $nombre;
-function __construct(){
-    
-
-}
-
-function agregarCumple($mes, $nombre) {
-    $this->cumpleaños[$mes][] = $nombre;
-}
-function contPersonas(){
-    $contNombres=0;
-    foreach ($this->cumpleaños as $mes => $nombre) {
-        $contNombres+=count($nombre);
-        
+    function __construct() {
     }
-    echo "<p>En esta lista hay $contNombres nombres inscritos</p>";
-}
-function mostrarCumples(){
-    foreach ($this->cumpleaños as $mes => $nombre) {
-            echo "<p style=' color: blue'>$mes</p>";
-            echo "<p>" . implode("<br> ", $nombre) . "</p>";
-            // echo "<p>" . count($nombre) . "</p>";
-            ;
+
+    function addBirthday($name, $month) {
+        $month = strtolower($month);
+        if (array_key_exists($month, $this->birthdays)) {
+            $this->birthdays[$month][] = $name;
+        } else {
+            echo "Invalid month.";
         }
+    }
+
+    function countPeople() {
+        $countNames = 0;
+        foreach ($this->birthdays as $month => $names) {
+            $countNames += count($names);
+        }
+        echo "<p>There are $countNames names in this list</p>";
+    }
+
+    function showBirthdays() {
+        foreach ($this->birthdays as $month => $names) {
+            echo "<p style='color: blue'>$month</p>";
+            echo "<p>" . implode("<br> ", $names) . "</p>";
+        }
+    }
 }
+
+$birthday = new Birthday();
+
+if(isset($_GET["name"]) && isset($_GET["month"])) {
+    $birthday->addBirthday($_GET["name"], $_GET["month"]);
 }
-
-
-
-
-$p1= new Cumple();
-$p1->agregarCumple( "enero", "Leire");
-$p1->contPersonas();
-$p1->mostrarCumples();
-
-        
 ?>
+
+<form method="get" action="">
+    <label>Name:<input type="text" name="name"></label>
+    <label>Month:<input type="text" name="month"></label>
+    <input type="submit" name="send" value="Send">
+    
+</form>
+
+<?php
+$birthday->showBirthdays();
+$birthday->countPeople();
+?>
+</body>
+</html>
+
+
