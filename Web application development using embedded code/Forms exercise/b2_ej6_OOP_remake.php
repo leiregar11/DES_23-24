@@ -2,35 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
 
-
 <?php
 class Birthday {
-    private $birthdays = array(
-        "january" => array("Ainara", "Xabi"),
-        "february" => array("Pedro", "Irati", "Ibai"),
-        "march" => array("Ander", "Juan", "María", "Alejandro"),
-        "april" => array("Ana", "Iker", "Carlos", "María"),
-        "may" => array("Marta", "Sergio", "Isabel"),
-        "june" => array("Andrés", "Natalia", "Gabriel", "Susana", "Javier"),
-        "july" => array("Carmen", "Rodrigo"),
-        "august" => array(),
-        "september" => array(),
-        "october" => array(),
-        "november" => array(),
-        "december" => array()
-    );
+    private $validMonths = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+    private $birthdays = [];
 
-    function __construct() {
+    function __construct($nBirthdays="") {
+        if($nBirthdays != ""){
+            $this->birthdays = unserialize($nBirthdays);
+        }
     }
 
     function addBirthday($name, $month) {
         $month = strtolower($month);
-        if (array_key_exists($month, $this->birthdays)) {
+        if (in_array($month, $this->validMonths)) {
             $this->birthdays[$month][] = $name;
         } else {
             echo "Invalid month.";
@@ -51,11 +41,15 @@ class Birthday {
             echo "<p>" . implode("<br> ", $names) . "</p>";
         }
     }
+    
+    function getBirthdays(){
+        return serialize($this->birthdays);
+    }
 }
 
-$birthday = new Birthday();
+$birthday = new Birthday($_GET["hidden"]);
 
-if(isset($_GET["name"]) && isset($_GET["month"])) {
+if(isset($_GET["name"]) && isset($_GET["month"])) {    
     $birthday->addBirthday($_GET["name"], $_GET["month"]);
 }
 ?>
@@ -64,14 +58,15 @@ if(isset($_GET["name"]) && isset($_GET["month"])) {
     <label>Name:<input type="text" name="name"></label>
     <label>Month:<input type="text" name="month"></label>
     <input type="submit" name="send" value="Send">
-    
+    <input type="hidden" name="hidden" value="<?php echo htmlspecialchars($birthday->getBirthdays(), ENT_QUOTES, 'UTF-8'); ?>">
 </form>
 
 <?php
-$birthday->showBirthdays();
+
 $birthday->countPeople();
+$birthday->showBirthdays();
+
 ?>
+
 </body>
 </html>
-
-
