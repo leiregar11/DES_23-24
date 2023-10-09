@@ -54,12 +54,14 @@
             } else {
                 throw new Exception("The ISAN must have 8 digits.");
             }
+            $film->__toString();
         }
         ////////////////////////////////////////////////////////////////
         public function addFilm($film,$ISAN){
             echo "public function addFilm(film,ISAN){";
             if($film->getName()!="" || $film->getYear()!="" || $film->getPunctuation()!=""){
                 $this->films[$ISAN][]=$film;
+                echo "this->films[ISAN][]=film;";
             }else{
                 throw new Exception ("Fill out all the fields");
             }
