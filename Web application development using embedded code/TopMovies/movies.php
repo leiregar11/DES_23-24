@@ -38,7 +38,9 @@
     class TopMovies{
         private $films=[];
         public function __construct($films=""){
-            $this->films;
+            if($films != ""){
+                $this->films = unserialize($films);
+            }
         }
         ////////////////////////////////////////////////////////////////
 
@@ -57,7 +59,8 @@
             
         }
         ////////////////////////////////////////////////////////////////
-        public function addFilm($film,$ISAN){
+        public function addFilm($film){
+            $ISAN=$film->getIsan();
             echo "public function addFilm(film,ISAN){";
             if($film->getName()!="" || $film->getYear()!="" || $film->getPunctuation()!=""){
                 $this->films[$ISAN][]=$film;
@@ -66,7 +69,8 @@
                 throw new Exception ("Fill out all the fields");
             }
         }
-        public function updateOrDeleteFilm($film,$ISAN){
+        public function updateOrDeleteFilm($film){
+            $ISAN=$film->getIsan();
             if($film->getName()!="" || $film->getYear()!="" || $film->getPunctuation()!=""){
                 $this->films[$ISAN][]=$film;
             }else{
@@ -89,15 +93,13 @@
 }
 
 
-
-if (!isset($_GET["name"]) && !isset($_GET["isan"])) {
-    echo "Missing data, make sure that at least the name or the ISAN are entered.";
-} else {
+$topMovies = new TopMovies($_GET["hidden"]);
+if (isset($_GET["name"]) && isset($_GET["isan"])) {
     // Crear una nueva película con los datos del formulario y controlarla
-    $topMovies = new TopMovies($_GET["hidden"]);
     $newMovie = new Movie($_GET["name"], $_GET["isan"], $_GET["year"], $_GET["punctuation"]);
     $topMovies->manager($newMovie);
-
+} else {
+    echo "Missing data, make sure that at least the name or the ISAN are entered.";
 }
     
 ?>

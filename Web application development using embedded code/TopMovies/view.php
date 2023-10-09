@@ -20,7 +20,7 @@
         include "movies.php";
         if(isset($topMovies)) {
             $cont = 0;
-            foreach ($topMovies->getMovies() as $movies) {
+            foreach ($topMovies as $movies) {
                 foreach ($movies as $movie) {
                     $cont++;
                     if ($cont % 2 == 0) {
@@ -52,7 +52,8 @@
             </select>
         </label><br>
         <input type="submit" name="send" value="send">
-        <input type="hidden" name="hidden" value="<?php echo htmlspecialchars(serialize($topMovies)); ?>">
+        <input type="hidden" name="hidden" value="<?php echo htmlspecialchars($topMovies->getFilms()); ?>">
+
     </form>
 </div>
 
