@@ -55,6 +55,6 @@
         <input type="hidden" name="hidden" value="<?php echo htmlspecialchars(serialize($topMovies)); ?>">
     </form>
 </div>
-    
+
 </body>
 </html>

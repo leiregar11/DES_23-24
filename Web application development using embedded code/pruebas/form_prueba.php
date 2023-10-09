@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-<form >
+<!-- <form >
 Name: <input type="text" name="name" >
 
 E-mail: <input type="text" name="email" >
@@ -26,14 +26,26 @@ value="male">Male
 
 value="other">Other</input>
 <input type="submit" value="Enviar"></p>
-</form>
+</form> -->
 <?php 
-echo "Your name is ".($_GET['name']);
-echo "Your email ".($_GET['email']);
-echo ($_GET['website']);
-echo "Comment: ".($_GET['comment']);
-    if (($_GET['gender']) && ($_GET['gender'])=="female") echo "Gender: female"; 
-    if (($_GET['gender']) && ($_GET['gender'])=="male") echo "Gender: male";
-    if (($_GET['gender']) && ($_GET['gender'])=="other") echo "Gender: Other";?>
+// echo "Your name is ".($_GET['name']);
+// echo "Your email ".($_GET['email']);
+// echo ($_GET['website']);
+// echo "Comment: ".($_GET['comment']);
+//     if (($_GET['gender']) && ($_GET['gender'])=="female") echo "Gender: female"; 
+//     if (($_GET['gender']) && ($_GET['gender'])=="male") echo "Gender: male";
+//     if (($_GET['gender']) && ($_GET['gender'])=="other") echo "Gender: Other";
+    
+    
+
+
+if(!isset($_COOKIE["visits"])){
+    setcookie("visits","1",time(+3600*24))
+}else{
+    $visits=(int) $_COOKIE["visitis"];
+    $visits++;
+    setcookie("visits",$visits,time()+3600*24)
+}
+?>
 </body>
 </html>

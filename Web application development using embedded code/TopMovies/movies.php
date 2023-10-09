@@ -54,7 +54,7 @@
             } else {
                 throw new Exception("The ISAN must have 8 digits.");
             }
-            $film->__toString();
+            
         }
         ////////////////////////////////////////////////////////////////
         public function addFilm($film,$ISAN){
@@ -97,6 +97,7 @@ if (!isset($_GET["name"]) && !isset($_GET["isan"])) {
     $topMovies = new TopMovies($_GET["hidden"]);
     $newMovie = new Movie($_GET["name"], $_GET["isan"], $_GET["year"], $_GET["punctuation"]);
     $topMovies->manager($newMovie);
+
 }
     
 ?>
