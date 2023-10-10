@@ -6,7 +6,7 @@
         private $punctuation;
         
         public function __construct($name,$isan,$year,$punctuation){
-            echo "public function __construct(name,isan,year,punctuation){";
+            // echo "public function __construct(name,isan,year,punctuation){";
             $this->name=$name;
             $this->isan=$isan;
             $this->year=$year;
@@ -14,23 +14,23 @@
         }
 
         public function getName(){
-            echo "public function getName(){";
+            // echo "public function getName(){";
             return $this->name;
         }
         public function getIsan(){
-            echo "public function getIsan(){";
+            // echo "public function getIsan(){";
             return $this->isan;
         }
         public function getYear(){
-            echo "public function getYear(){";
+            // echo "public function getYear(){";
             return $this->year;
         }
         public function getPunctuation(){
-            echo "public function getPunctuation(){";
+            // echo "public function getPunctuation(){";
             return $this->punctuation;
         }
         public function __toString(){
-            echo "public function __toString(){";
+            // echo "public function __toString(){";
             return "<td> ".($this->name)."</td> <td> ".($this->isan)."</td><td> ".($this->year)."</td><td> ".($this->punctuation)."</td>";
         }
     
@@ -41,13 +41,15 @@
             if($films != ""){
                 $this->films = unserialize($films);
             }
+            print_r($films);
         }
         ////////////////////////////////////////////////////////////////
 
         public function manager($film) {
-            echo "public function manager(film) {";
+            // echo "public function manager(film) {";
             $isan = $film->getIsan();
             if (strlen($isan) == 8) {
+                // echo $isan;
                 if (!array_key_exists($isan, $this->films)) {
                     $this->addFilm($film, $isan);
                 } else {
@@ -61,10 +63,10 @@
         ////////////////////////////////////////////////////////////////
         public function addFilm($film){
             $ISAN=$film->getIsan();
-            echo "public function addFilm(film,ISAN){";
+            // echo "public function addFilm(film,ISAN){";
             if($film->getName()!="" || $film->getYear()!="" || $film->getPunctuation()!=""){
                 $this->films[$ISAN][]=$film;
-                echo "this->films[ISAN][]=film;";
+                // echo "this->films[ISAN][]=film;";
             }else{
                 throw new Exception ("Fill out all the fields");
             }
@@ -88,18 +90,10 @@
         }
 
         public function getFilms(){
-            return serialize($this->films);
+            $MoviesInfo="";
+            foreach ($this->films as $film) {
+                $MoviesInfo=$MoviesInfo+'\"$film\"->\"$film
+            }
+            return $MoviesInfo;
         }
 }
-
-
-$topMovies = new TopMovies($_GET["hidden"]);
-if (isset($_GET["name"]) && isset($_GET["isan"])) {
-    // Crear una nueva película con los datos del formulario y controlarla
-    $newMovie = new Movie($_GET["name"], $_GET["isan"], $_GET["year"], $_GET["punctuation"]);
-    $topMovies->manager($newMovie);
-} else {
-    echo "Missing data, make sure that at least the name or the ISAN are entered.";
-}
-    
-?>

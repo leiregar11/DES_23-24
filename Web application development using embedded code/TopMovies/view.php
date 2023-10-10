@@ -6,7 +6,7 @@
     <title>Top Movies - Leire</title>
 </head>
 <body>
-
+<?php include "movies.php"; ?>
 
 <div class="showInfo">
     <table border="1">
@@ -17,27 +17,45 @@
             <th>Punctuation</th>
         </tr>
         <?php
-        include "movies.php";
-        if(isset($topMovies)) {
+
+        try{
+            if (isset($_POST["hidden"])){
+                $topMovies = new TopMovies($_POST["hidden"]);
+                if (isset($_POST["name"]) && isset($_POST["isan"])) {
+                    // Crear una nueva película con los datos del formulario y controlarla
+                    $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
+                    $topMovies->manager($newMovie);
+                } else {
+                    echo "Missing data, make sure that at least the name or the ISAN are entered.";
+                }
+            }else{
+                $topMovies = new TopMovies("");
+            }
+        }catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        
+
+
+        if(isset($topMovies)&& $topMovies!="") {
             $cont = 0;
             foreach ($topMovies as $movies) {
-                foreach ($movies as $movie) {
                     $cont++;
                     if ($cont % 2 == 0) {
                         echo "<tr style='background-color: lightblue;'>";
                     } else {
                         echo "<tr>";
                     }
-                    echo $movie->__toString();
+                    echo $movies->printFilms();
                     echo "</tr>";
-                }
+                
             }
         }
         ?>
     </table>
 </div>
     <div class="enterInfo">
-    <form method="get" action="movies.php">
+    <form method="post" action="view.php">
         <label>Name: <input type="text" name="name"></label><br>
         <label>ISAN: <input type="text" name="isan"></label><br>
         <label>Year: <input type="text" name="year"></label><br>
