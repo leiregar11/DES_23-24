@@ -55,7 +55,7 @@
     </table>
 </div>
     <div class="enterInfo">
-    <form method="post" action="view.php">
+    <form method="get" action="view.php">
         <label>Name: <input type="text" name="name"></label><br>
         <label>ISAN: <input type="text" name="isan"></label><br>
         <label>Year: <input type="text" name="year"></label><br>
@@ -70,8 +70,9 @@
             </select>
         </label><br>
         <input type="submit" name="send" value="send">
-        <input type="hidden" name="hidden" value="<?php echo htmlspecialchars($topMovies->getFilms()); ?>">
-
+        <input type="hidden" name="hidden" value="<?php echo $topMovies->getFilms(); ?>">
+        
+        
     </form>
 </div>
 

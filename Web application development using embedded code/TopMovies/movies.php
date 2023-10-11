@@ -29,19 +29,26 @@
             // echo "public function getPunctuation(){";
             return $this->punctuation;
         }
-        public function __toString(){
+        public function printTable(){
             // echo "public function __toString(){";
             return "<td> ".($this->name)."</td> <td> ".($this->isan)."</td><td> ".($this->year)."</td><td> ".($this->punctuation)."</td>";
+        }
+        public function __toString(){
+            return ($this->name)."&&".($this->isan)."&&".($this->year)."&&".($this->punctuation);
         }
     
     }
     class TopMovies{
         private $films=[];
-        public function __construct($films=""){
-            if($films != ""){
-                $this->films = unserialize($films);
+        public function __construct($movies=""){
+            if($movies != ""){
+                $moviesStr=explode("||",$movies);
+                foreach($moviesStr as $movie){
+                    $movieInfo=explode("&&", $movie);
+                    $nM= new Movie ($movieInfo[0],$movieInfo[1],$movieInfo[2],$movieInfo[3]);
+                    $this->films[$movieInfo[1]]=$nm;
+                }
             }
-            print_r($films);
         }
         ////////////////////////////////////////////////////////////////
 
@@ -80,9 +87,9 @@
             }
         }
         public function printFilms($name){
-            foreach ($films as $film ) {
+            foreach ($this->films as $film ) {
                 if (strcasecmp($name, $film->getName()) === 0) {
-                    echo $film->__toString();
+                    // echo $film->__toString();
                 } else {
                     echo "La palabra '$palabraBuscada' no está en el string.";
                 }
@@ -90,10 +97,27 @@
         }
 
         public function getFilms(){
-            $MoviesInfo="";
-            foreach ($this->films as $film) {
-                $MoviesInfo=$MoviesInfo+'\"$film\"->\"$film
+            $str = "";
+            if (!empty($this->films)) {
+                $keys = array_keys($this->films);
+                $lastKey = end($keys);
+                // echo "antes del for $str";
+                foreach ($this->films as $key => $movie) {
+                // echo "antes la cadena $str";
+                // $str .= $movie->__toString();
+                $str .= "hola";
+                $str += "hola2";
+                // // echo "despes la cadena $str";
+                if ($key !== $lastKey) {
+                // // echo "en el if $str";
+
+                        // $str .= "||";
+                        $str .= "||";
+                    }
+                }
+                // echo "despues del for $str";
             }
-            return $MoviesInfo;
+            return $str;
         }
+        
 }

@@ -6,34 +6,10 @@
     <title>Document</title>
 </head>
 
-<body style="background:<?php echo $selectedColor ?>">
-<?php
-$selectedColor = "";
-if(isset($_POST['colors'])){
-    $selectedColor = $_POST['colors'];
-    setcookie("colors", $selectedColor, time() + 3600, "/"); 
-} else if(isset($_COOKIE["colors"])) {
-    $selectedColor = $_COOKIE["colors"];
-}
+<body >
 
-$enteredName = "";
-if(isset($_POST['name'])){
-    $enteredName = $_POST['name'];
-    setcookie("name", $enteredName, time() + 3600, "/"); 
-} else if(isset($_COOKIE["name"])) {
-    $enteredName = $_COOKIE["name"];
-}
-
-$selectedLanguage = "";
-if(isset($_POST['languages'])){
-    $selectedLanguage = $_POST['languages'];
-    setcookie("languages", $selectedLanguage, time() + 3600, "/"); 
-} else if(isset($_COOKIE["languages"])) {
-    $selectedLanguage = $_COOKIE["languages"];
-}
-?>
-    <form>
-        <select name="colors">
+    <form  action="cookie+session.php">
+        <select name="color">
             <option value="red">red</option>
             <option value="green">green</option>
             <option value="blue">blue</option>
@@ -48,21 +24,34 @@ if(isset($_POST['languages'])){
         <input type="submit" value="Send">
     </form>
     <?php
-    if (isset($_COOKIE["colors"])) {
-        echo "Color: " . $_COOKIE["colors"];
+    if (isset($_COOKIE["color"])) {
+        echo "Color: " . $_COOKIE["color"];
     } else {
         echo "No hay información de color almacenada en las cookies.";
     }
-    if (isset($_COOKIE["name"])) {
-        echo "Name: " . $_COOKIE["name"];
-    } else {
-        echo "No hay información de name almacenada en las cookies.";
-    }
-    if (isset($_COOKIE["languages"])) {
-        echo "languages: " . $_COOKIE["languages"];
-    } else {
-        echo "No hay información de languages almacenada en las cookies.";
-    }
+  
     ?>
 </body>
+<?php
+if (isset($_GET["color"])) {
+    if (isset($_GET["color"])) {
+        $color = $_GET['color'];
+        setcookie("color",$color);
+    } else if (isset($_COOKIE["color"])) {
+        $color = $_COOKIE['color'];
+    }
+    echo "<style>
+    body{
+        background: $color;
+    }
+    <style>";
+}
+
+if (isset($_GET["name"])) {
+    session_start();
+    $arr[]=$_SESSION["name"];
+}
+
+
+?>
 </html>
