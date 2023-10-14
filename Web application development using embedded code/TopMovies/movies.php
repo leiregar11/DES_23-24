@@ -1,4 +1,4 @@
-<pre>
+
 <?php
     class Movie{
         private $name;
@@ -47,10 +47,9 @@
                         $this->films[$movieInfo[1]][] = $nM;
                     } 
                 }
+            }
         }
-    }
-        ////////////////////////////////////////////////////////////////
-
+        
         public function manager($film) {
             // echo "public function manager(film) {";
             $isan = $film->getIsan();
@@ -68,7 +67,6 @@
             }
             
         }
-        ////////////////////////////////////////////////////////////////
         public function addFilm($film){
             $ISAN=$film->getIsan();
             // echo "public function addFilm(film,ISAN){";
@@ -81,7 +79,7 @@
         }
         public function updateOrDeleteFilm($film){
             $ISAN = $film->getIsan();
-             unset($this->films[$ISAN]);
+            unset($this->films[$ISAN]);
             if ($film->getName() != "" && $film->getYear() != "" && $film->getPunctuation() != "") {
                 $this->films[$ISAN][] = $film; // Actualizar el valor de la clave ISAN
             }
@@ -96,15 +94,11 @@
                         $filtredName = '/' . $name . '/i';
                         if (preg_match($filtredName, $movie->getName())) {
                             $view .= "<li>";
-                    $view .= " \"" . ($movie->getName()) . "\" from " . ($movie->getYear());
-                 $view .= "</li>";
-                }
-               
+                            $view .= " \"" . ($movie->getName()) . "\" from " . ($movie->getYear());
+                            $view .= "</li>";
+                        }
                     }
-                
-                
-               
-            }
+                }
             $view .= "</ul>";
         
             echo $view;
@@ -135,21 +129,16 @@
                 $keys = array_keys($this->films);
                 $lastKey = end($keys);
                 foreach ($this->films as $key =>$movies) {
-                 foreach ($movies as $movie ) {
-                    $str .= $movie->__toString();
-                 }
-                 
-                if ($key !== $lastKey) {
-
+                    foreach ($movies as $movie ) {
+                        $str .= $movie->__toString();
+                    }
+                    
+                    if ($key !== $lastKey) {
                         $str .= "||";
                     }
                 }
-            }else{
-                $str="a";
             }
             return $str;
         }
-        
+
 }
-?>
-</pre>
