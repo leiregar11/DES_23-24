@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Movies - Leire</title>
+    <title>Top Movies - Hidden</title>
 </head>
 <body>
-<?php include "movies.php"; ?>
+<?php include "movies.php"; 
+if (isset($_POST["username"])) {
+    $username = $_POST["username"];
+} else {
+    header("Location: otra_pagina.php"); // Redirigir a otra página si no se proporciona un nombre de usuario
+    exit;
+}
+?>
 
 <div class="showInfo">
+<<<<<<< HEAD:Web application development using embedded code/TopMovies/view.php
    
+=======
+<h1><?php echo $_POST["username"] ?> movies:</h1>
+>>>>>>> 7b2c14b (empezando laravel):Web application development using embedded code/TopMovies/TopMovies/view.php
         <?php
 
         try{
@@ -20,20 +31,34 @@
                     // Crear una nueva película con los datos del formulario y controlarla
                     
                     if (empty($_POST["isan"])) {
+<<<<<<< HEAD:Web application development using embedded code/TopMovies/view.php
                         $topMovies->printByName($_POST["name"]);
                     } else {
                         $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
                         $topMovies->manager($newMovie);
                         $topMovies->printMovies();
+=======
+                        echo $topMovies->printByName($_POST["name"]);
+                    } else {
+                        $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
+                        $topMovies->manager($newMovie);
+                        echo $topMovies->printMovies();
+>>>>>>> 7b2c14b (empezando laravel):Web application development using embedded code/TopMovies/TopMovies/view.php
                     }
                 } else {
                     
                     echo "Missing data, make sure that at least the name or the ISAN are entered.";
                 }
+<<<<<<< HEAD:Web application development using embedded code/TopMovies/view.php
             }
             else{
                 echo "no entra al if";
+=======
+>>>>>>> 7b2c14b (empezando laravel):Web application development using embedded code/TopMovies/TopMovies/view.php
             }
+            // else{
+            //     echo "no entra al if";
+            // }
         }catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }

@@ -98,6 +98,10 @@
                             $view .= "</li>";
                         }
                     }
+<<<<<<< HEAD:Web application development using embedded code/TopMovies/movies.php
+=======
+                
+>>>>>>> 7b2c14b (empezando laravel):Web application development using embedded code/TopMovies/TopMovies sessions/movies.php
                 }
             $view .= "</ul>";
         
@@ -130,10 +134,18 @@
                 $lastKey = end($keys);
                 foreach ($this->films as $key =>$movies) {
                     foreach ($movies as $movie ) {
+<<<<<<< HEAD:Web application development using embedded code/TopMovies/movies.php
                         $str .= $movie->__toString();
                     }
                     
                     if ($key !== $lastKey) {
+=======
+                    $str .= $movie->__toString();
+                    }
+                
+                if ($key !== $lastKey) {
+
+>>>>>>> 7b2c14b (empezando laravel):Web application development using embedded code/TopMovies/TopMovies sessions/movies.php
                         $str .= "||";
                     }
                 }
@@ -142,3 +154,5 @@
         }
 
 }
+
+?>
