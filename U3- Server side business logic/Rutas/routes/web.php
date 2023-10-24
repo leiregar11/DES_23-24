@@ -22,11 +22,11 @@ Route::name("home.")->group(function(){
         return "contact";})->name("contact");
 });
 
-Route::name("post.")->group(function(){
+Route::prefix('posts')->name("post.")->group(function(){
 
-Route::get('/recent-posts/{days_ago?}', [PostController::class,'viewDays'])->where(['hace_dias'=>'[0-9]+'])->name("posts.recent.index");
+Route::get('{days_ago?}', [PostController::class,'viewDays'])->where(['hace_dias'=>'[0-9]+'])->name("recent");
 
-Route::get('/posts/{id?}', [PostController::class,'viewId'] )->name("posts.show");
+Route::get('{id?}', [PostController::class,'viewId'] )->name("show");
 // Route::get('/posts/{id?}', [PostController::class,'viewId'] )->where(['id'=>'A-Za-z'])->name("posts.show");
 });
 
