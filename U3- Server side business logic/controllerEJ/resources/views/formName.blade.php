@@ -6,7 +6,8 @@
     <title>Get Name</title>
 </head>
 <body>
-    <form>
+    <form action="{{routoe('name.getForm'}}" method="post">
+    @csrf
         <p>Name <input type="text" name="name"></p>
         <p>Lastname <input type="text" name="lastname"></p>
         <button type="submit">Send</button>

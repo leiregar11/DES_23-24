@@ -16,5 +16,13 @@ use App\Http\Controllers\NameController;
 
 Route::get('/', [NameController::class , "index"])->name("index");
 
-Route::get("/form", [NameController::class , "getName"])->name("form");
-Route::get("/age", [NameController::class])->name("age");
+Route::name("name.")->group(function(){
+Route::get("/NameForm", [NameController::class , "showNameForm"])->name("form");
+Route::post("/NameForm/{name?}", [NameController::class , "getName"])->name("getForm");
+});
+
+Route::name("age.")->group(function(){
+    Route::get("/AgeForm", [NameController::class , "showNameAge"])->name("form");
+    Route::post("/AgeForm/{age?}", [NameController::class , "getAge"])->name("getForm");
+    });
+    // Route::post("/UserInfo",[NameController::class ,"showInfo"])->name("showInfo");

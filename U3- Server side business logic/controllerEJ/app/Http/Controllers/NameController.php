@@ -11,18 +11,34 @@ class NameController extends Controller
      */
     public function index()
     {
-        return view("formAge");
+        return view("index");
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function getName()
+    public function getName(Request $rec)
+    {
+        return view("formAge");
+        
+    }
+
+    public function showNameForm()
     {
         return view("formName");
         
     }
+    public function getAge()
+    {
+        return view("formAge");
+        
+    }
 
+    public function showAgeForm()
+    {
+        return view("formAge");
+        
+    }
     /**
      * Store a newly created resource in storage.
      */

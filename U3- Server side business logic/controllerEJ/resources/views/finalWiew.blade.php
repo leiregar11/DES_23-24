@@ -6,9 +6,7 @@
     <title>Get Name</title>
 </head>
 <body>
-    <form action="{{routoe('age.getForm'}}" method="post">
-    @csrf
-        <h2> Hello {{ $name }}</h2>
+    <form>
         <p>Name <input type="text" name="name"></p>
         <p>Lastname <input type="text" name="lastname"></p>
         <button type="submit">Send</button>
