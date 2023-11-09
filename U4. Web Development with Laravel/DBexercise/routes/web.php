@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\NombreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +14,5 @@ use App\Http\Controllers\NombreController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
-
-
-Route::get('welcome/{id?}', [NombreController::class, 'gettingID'])->name("welcome");
-
-Route::resource('/products', ProductController::class);
