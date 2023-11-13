@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class MountainsTableSeeder extends Seeder
 {
@@ -12,14 +13,16 @@ class MountainsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $mountains = [
-            ['name' => 'Mountain1', 'height' => 1000, 'belongsToRange' => true, 'firstClimbDate' => '2022-01-01', 'continent' => 'Asia'],
-            ['name' => 'Mountain2', 'height' => 1500, 'belongsToRange' => false, 'firstClimbDate' => '2022-02-15', 'continent' => 'Europe'],
-            // Add more mountain data as needed
-        ];
+        
+            DB::table('mountains')->insert([
+                'name' => 'Mountain1',
+                'height' => 1000,
+                'belongsToRange' => true,
+                'firstClimbDate' => '2022-01-01',
+                'continent' => 'Asia'
+                ]);
 
-        foreach ($mountains as $mountain) {
-            DB::table('mountains')->insert($mountain);
-        }
+                \App\Models\Mountain::factory(10)->create();
+        
     }
 }
