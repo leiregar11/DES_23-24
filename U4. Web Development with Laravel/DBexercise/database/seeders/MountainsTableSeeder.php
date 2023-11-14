@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use DB;
-
+use \App\Models\Mountain;
 class MountainsTableSeeder extends Seeder
 {
     /**
@@ -16,13 +16,14 @@ class MountainsTableSeeder extends Seeder
         
             DB::table('mountains')->insert([
                 'name' => 'Mountain1',
-                'height' => 1000,
-                'belongsToRange' => true,
+                'height' => 2000,
+                'belongsToRange' => false,
                 'firstClimbDate' => '2022-01-01',
-                'continent' => 'Asia'
+                'continent' => 'Europe'
                 ]);
 
-                \App\Models\Mountain::factory(10)->create();
+                Mountain::factory(10)->create();
         
+                $mountain=new Mountain();
     }
 }
